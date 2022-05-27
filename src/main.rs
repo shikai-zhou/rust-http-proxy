@@ -64,7 +64,7 @@ async fn parse_uri(v : &Vec<&str>) -> io::Result<String>{
 #[tokio::main]
 async fn main() -> io::Result<()> {
     let args: Vec<String> = env::args().collect();
-    let mut server_addr = "127.0.0.1".to_string();
+    let mut server_addr = "0.0.0.0".to_string();
     if args.len() < 2 {
         server_addr.push_str(":8080");
     } else {

@@ -1,6 +1,6 @@
 # About
 
-Simple http web proxy in rust. Fast and multithreaded using tokio runtime.
+Simple http web proxy in rust. Fast and multithreaded using tokio runtime. Not ready for production.
 
 # Dependencies
 
