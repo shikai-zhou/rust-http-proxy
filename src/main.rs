@@ -47,18 +47,17 @@ async fn process_socket(mut inbound: TcpStream) -> io::Result<()>{
 async fn parse_uri(v : &Vec<&str>) -> io::Result<String>{
     //get uri from request
     //TODO: Check that request is valid
-    // let uri = v[1];
-    // let pos = uri.find("://").unwrap_or_else(|| usize::MAX);
-    // let len = uri.len();
-    // let hostname : str;
-    // if pos == usize::MAX {
-    //     let hostname = &uri;
-    // } else {
-    //     let hostname = &&uri[pos+3..len];
-    // }
-    let hostname = v[1];
-    
-    Ok(hostname.to_string())
+    let uri : Vec<&str> = v[1].split("://").collect();
+    let mut hostname: String;
+    if uri.len() > 1 {
+        let temp : Vec<&str> = uri[1].split('/').collect();
+        hostname = temp[0].to_string();
+        hostname.push_str(":80");
+    } else {
+        hostname = uri[0].to_string();
+    }
+    println!("{}",hostname);
+    Ok(hostname)
 }
 
 #[tokio::main]
