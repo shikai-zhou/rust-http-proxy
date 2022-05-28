@@ -10,9 +10,9 @@ async fn process_socket(mut inbound: TcpStream) -> io::Result<()>{
     let mut buf = [0; 256];
     inbound.try_read(&mut buf).unwrap();
     let string = str::from_utf8(& buf).unwrap();
-    // println!("{}", string);
+    
     let v: Vec<&str> = string.split(' ').collect();
-    // println!("{}", v[1]);
+    
     let mut outbound;
     if v[0] == "CONNECT" {
         let uri = parse_uri(&v).await?;
@@ -56,7 +56,7 @@ async fn parse_uri(v : &Vec<&str>) -> io::Result<String>{
     } else {
         hostname = uri[0].to_string();
     }
-    println!("{}",hostname);
+    //println!("{}",hostname);
     Ok(hostname)
 }
 
